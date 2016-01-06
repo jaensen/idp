@@ -1,21 +1,11 @@
 const Hapi = require('hapi');
-const  handlers = require('./handlers.js');
-const keygen = require('./keygen.js');
-
-// generate RSA keypair
-//console.log(JSON.stringify(keygen.createKeyPair()));
-
-// Create a server with a host and port
 const server = new Hapi.Server();
 
 server.connection({
     port: 3000
 });
 
-const auth = require('./auth.js');
-auth.setupAuth(server);
-
-const routes = require('./routes.js');
+const routes = require('./server/routes.js');
 routes.setupRoutes(server);
 
 // Start the server
