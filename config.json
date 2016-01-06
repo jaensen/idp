@@ -1,0 +1,10 @@
+{
+  "baseUri": "http://localhost:3000/",
+  "db":{
+    "level":"/home/daniel/.idp/idp.db",
+    "fork":"/home/daniel/.idp/idp.blob"
+  },
+  "static": {
+    "test" : "/home/daniel/Documents/Dev/forkdb-test/static/"
+  }
+}
