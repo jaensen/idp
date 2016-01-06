@@ -2,8 +2,8 @@ const Hapi = require('hapi');
 const  handlers = require('./handlers.js');
 const keygen = require('./keygen.js');
 
-
-keygen.createKey2();
+// generate RSA keypair
+//console.log(JSON.stringify(keygen.createKeyPair()));
 
 // Create a server with a host and port
 const server = new Hapi.Server();
