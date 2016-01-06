@@ -48,6 +48,40 @@ exports.addContainer = function (resourceId, type, rel, resource, member) {
 }
 
 /**
+ * Adds a resource to the db and returns its new id.
+ * @param resource
+ * @returns {Promise}
+ */
+exports.addResource = function(resource) {
+    return new Promise(function(accept,reject) {
+
+        var id = config.baseUri + uuid.v4();
+        var graph = memberResource['@graph'];
+        graph.id = id;
+
+        exports.put(id, memberResource).then(function() {
+            accept(id);
+        }).catch(reject);
+    });
+}
+
+/**
+ * Adds an entity to a container.
+ * @param containerResourceId the container id
+ * @param memberResource the document to add
+ * @returns {Promise} A promise that will contain the new resource id.
+ */
+exports.addToContainer = function (containerResourceId, memberResource) {
+    return new Promise(function(accept,reject) {
+        exports.addResource(memberResource).then(function(id) {
+            exports.addMemberToContainer(containerResourceId, id).then(function() {
+                accept(id);
+            }).catch(reject);
+        }).catch(reject);
+    });
+}
+
+/**
  * Adds an existing entity to an existing container.
  * @param containerResourceId
  * @param memberResourceId

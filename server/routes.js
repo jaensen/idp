@@ -6,7 +6,6 @@ const handlers = require('./handlers.js');
  */
 exports.setupRoutes = function(server)
 {
-    // Profile request
     server.route({
         method: 'GET',
         path: '/{uri*}',
@@ -14,4 +13,20 @@ exports.setupRoutes = function(server)
             handler: handlers.get
         }
     });
+
+    server.route({
+        method: 'POST',
+        path: '/',
+        config: {
+            handler: handlers.createProfile
+        }
+    });
+/*
+    server.route({
+        method: 'POST',
+        path: '/{uri*}',
+        config: {
+            handler: handlers.addToContainer
+        }
+    });*/
 };
